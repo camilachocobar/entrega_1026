@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<title>Visualizando datos con p5.js</title>
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light fixed-top bg-white">
+<div class="container">
+	<a class="navbar-brand" href="index.html">Asunto</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+			<li class="nav-item"><a class="nav-link" href="sketch-1.html">Primera</a></li>
+			<li class="nav-item"><a class="nav-link" href="sketch-2.html">Segunda</a></li>
+			<li class="nav-item active"><a class="nav-link" href="sketch-3.html">Tercera</a></li>
+		</ul>
+	</div>
+</div>
+</nav>
+<!--biblioteca de p5.js-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
+<!--bibliteca auxiliar, sirve para que p5.js pueda manipular el dom-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
+<!--corre la bolita-->
+<script>
+    
+    function preload() {
+				visas = loadJSON('https://raw.githubusercontent.com/camilachocobar/migracion-valpo-edad1/gh-pages/migracion-edades.csv');
+			}
+			function setup() {
+				var canvas = createCanvas(windowWidth, 300);
+				canvas.parent('pifaiv');
+				smooth();
+				noLoop();
+				noStroke();
+				console.log(visas);
+                
+			}
+			
+			function draw(){
+				background(240);
+				
+				for (var a = 0; a < 7; a++){
+                    if(visas[a].age < 500){
+                        fill(0,155,100);
+                    }
+                    else if(visas[a].age>1000){
+                        fill(255,0,0);
+                    }
+                    else if (visas[a].age>1500){
+                         fill(246,0,87);
+                    } 
+                    else {
+                        fill(0)
+                    }        
+					
+				    ellipse((windowWidth/8)*(a+1),height/2,visas[a].age*2,visas[a].age*2);
+                    textAlign(CENTER);
+					textSize(15);
+                    text(visas[a].user, (windowWidth/8)*(a+1),height/2+50)
+                    
+					
+				}
+            }
+                
+			
+			function windowResized() {
+  				resizeCanvas(windowWidth, 300);
+			}
+function setup(){
+	var canvas = createCanvas(windowWidth,windowHeight);
+	canvas.position(0,0);
+	canvas.style('z-index','-1');
+	console.log("hola mundo!");
+}
